@@ -25,10 +25,16 @@ SECRET_KEY = 'django-insecure-c%zon@kqi%536eo0r-f@yh8v$f0c(^%q0zlhb24&lw#bw%-e&j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+import os
+CODESPACE_NAME = os.environ.get('CODESPACE_NAME')
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+if CODESPACE_NAME:
+    ALLOWED_HOSTS.append(f'{CODESPACE_NAME}-8000.app.github.dev')
 
 
 # Application definition
+
+AUTH_USER_MODEL = 'octofit_tracker.User'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
